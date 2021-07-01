@@ -29,6 +29,13 @@ data class ScreenElement(
             .replaceVariables(screenName, packageName, androidComponent)
             .replaceCustomVariables(customVariablesMap)
 
+    fun subdirectory(
+        screenName: String,
+        packageName: String,
+        androidComponent: String) =
+        subdirectory
+            .replaceVariables(screenName, packageName, androidComponent)
+
     fun fileName(
         screenName: String,
         packageName: String,
@@ -53,6 +60,7 @@ data class ScreenElement(
         replace(Variable.NAME.value, screenName)
             .replace(Variable.NAME_SNAKE_CASE.value, screenName.toSnakeCase())
             .replace(Variable.NAME_LOWER_CASE.value, screenName.decapitalize())
+            .replace(Variable.NAME_ALL_LOWER_CASE.value, screenName.toLowerCase())
             .replace(Variable.SCREEN_ELEMENT.value, name)
             .replace(Variable.PACKAGE_NAME.value, packageName)
             .replace(Variable.ANDROID_COMPONENT_NAME.value, androidComponent)

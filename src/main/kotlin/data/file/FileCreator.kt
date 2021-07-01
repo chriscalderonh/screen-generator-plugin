@@ -48,7 +48,7 @@ class FileCreatorImpl @Inject constructor(
                     } else {
                         val codeSubdirectory = findCodeSubdirectory(packageName, module, it.sourceSet)
                         if (codeSubdirectory != null) {
-                            addFile(codeSubdirectory, file, it.subdirectory)
+                            addFile(codeSubdirectory, file, it.subdirectory(screenName, packageName, androidComponent.displayName))
                         }
                     }
                 }
@@ -60,7 +60,7 @@ class FileCreatorImpl @Inject constructor(
         if (subdirectory.isNotEmpty()) {
             var newSubdirectory = directory
             subdirectory.split("/").forEach { segment ->
-                newSubdirectory = directory.findSubdirectory(segment) ?: directory.createSubdirectory(segment)
+                newSubdirectory = newSubdirectory.findSubdirectory(segment) ?: newSubdirectory.createSubdirectory(segment)
             }
             newSubdirectory.addFile(file)
         } else {

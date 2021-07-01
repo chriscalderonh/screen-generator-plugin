@@ -1,3 +1,11 @@
+buildscript {
+    repositories {
+        maven {
+            url 'https://www.jetbrains.com/intellij-repository/releases'
+        }
+    }
+}
+
 plugins {
     id "java"
     id "org.jetbrains.kotlin.jvm" version "1.4.10"
@@ -10,7 +18,7 @@ apply plugin: 'kotlin-kapt'
 
 
 group 'screengenerator'
-version '1.2.1'
+version '1.2.2'
 
 repositories {
     mavenCentral()
@@ -39,8 +47,8 @@ compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
 intellij {
-    version '2020.2'
-    alternativeIdePath '/Applications/Android Studio.app'
+    version = "LATEST-EAP-SNAPSHOT"
+    instrumentCode = false
     plugins 'org.jetbrains.kotlin'
     intellij.updateSinceUntilBuild false
 }
