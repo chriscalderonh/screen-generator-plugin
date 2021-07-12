@@ -70,6 +70,8 @@ data class ScreenElement(
         var updatedString = this
         variables.forEach { (variable, text) ->
             updatedString = updatedString.replace("%${variable.name}%", text)
+            updatedString = updatedString.replace("%${variable.name}_lowercase%", text.toLowerCase())
+            updatedString = updatedString.replace("%${variable.name}_decapitalize%", text.decapitalize())
         }
         return updatedString
     }
