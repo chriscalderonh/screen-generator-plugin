@@ -27,6 +27,8 @@ class DirectoryImpl(private val project: Project,
             FileType.LAYOUT_XML -> XMLLanguage.INSTANCE
         }
         val psiFile = PsiFileFactory.getInstance(project).createFileFromText("${file.name}.${file.fileType.extension}", language, file.content)
-        psiDirectory.add(psiFile)
+        if (psiDirectory.findFile("${file.name}.${file.fileType.extension}") == null) {
+            psiDirectory.add(psiFile)
+        }
     }
 }
