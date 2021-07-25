@@ -37,7 +37,7 @@ class FileCreatorImpl @Inject constructor(
                 .forEach {
                     val file = File(
                         it.fileName(screenName, packageName, androidComponent.displayName, customVariablesMap),
-                        it.body(screenName, packageName, androidComponent.displayName, customVariablesMap),
+                        it.body(screenName, packageName, androidComponent.displayName, customVariablesMap, module.nameWithoutPrefix),
                         it.fileType
                     )
                     if (it.fileType == FileType.LAYOUT_XML) {

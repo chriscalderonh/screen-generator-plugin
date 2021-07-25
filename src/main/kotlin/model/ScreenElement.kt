@@ -23,16 +23,18 @@ data class ScreenElement(
         screenName: String,
         packageName: String,
         androidComponent: String,
-        customVariablesMap: Map<CustomVariable, String>
+        customVariablesMap: Map<CustomVariable, String>,
+        nameWithoutPrefix: String = ""
     ) =
         template
-            .replaceVariables(screenName, packageName, androidComponent)
+            .replaceVariables(screenName, packageName, androidComponent, nameWithoutPrefix)
             .replaceCustomVariables(customVariablesMap)
 
     fun subdirectory(
         screenName: String,
         packageName: String,
-        androidComponent: String) =
+        androidComponent: String
+    ) =
         subdirectory
             .replaceVariables(screenName, packageName, androidComponent)
 
@@ -55,7 +57,8 @@ data class ScreenElement(
     private fun String.replaceVariables(
         screenName: String,
         packageName: String,
-        androidComponent: String
+        androidComponent: String,
+        nameWithoutPrefix: String = ""
     ) =
         replace(Variable.NAME.value, screenName)
             .replace(Variable.NAME_SNAKE_CASE.value, screenName.toSnakeCase())
@@ -65,6 +68,7 @@ data class ScreenElement(
             .replace(Variable.PACKAGE_NAME.value, packageName)
             .replace(Variable.ANDROID_COMPONENT_NAME.value, androidComponent)
             .replace(Variable.ANDROID_COMPONENT_NAME_LOWER_CASE.value, androidComponent.decapitalize())
+            .replace(Variable.PATH_TO_BINDING.value, getBindingPath(packageName, nameWithoutPrefix))
 
     private fun String.replaceCustomVariables(variables: Map<CustomVariable, String>): String {
         var updatedString = this
@@ -74,6 +78,14 @@ data class ScreenElement(
             updatedString = updatedString.replace("%${variable.name}_decapitalize%", text.decapitalize())
         }
         return updatedString
+    }
+
+    private fun getBindingPath(
+        packageName: String,
+        nameWithoutPrefix: String
+    ): String {
+        val lastPartPath = nameWithoutPrefix.split(".").last()
+        return "${packageName.substringBefore(lastPartPath)}$lastPartPath"
     }
 
     companion object {

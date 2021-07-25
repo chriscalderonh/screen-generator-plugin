@@ -18,7 +18,7 @@ apply plugin: 'kotlin-kapt'
 
 
 group 'screengenerator'
-version '1.2.2'
+version '1.2.3'
 
 repositories {
     mavenCentral()
@@ -47,8 +47,7 @@ compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
 intellij {
-    version = "LATEST-EAP-SNAPSHOT"
-    instrumentCode = false
+    version = "2020.2"
     plugins 'org.jetbrains.kotlin'
     intellij.updateSinceUntilBuild false
 }
