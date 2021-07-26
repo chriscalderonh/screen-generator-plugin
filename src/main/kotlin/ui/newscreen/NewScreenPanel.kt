@@ -9,6 +9,7 @@ import ui.settings.widget.constraintsLeftWithSpace
 import ui.settings.widget.constraintsRight
 import ui.settings.widget.constraintsRightWithSpace
 import util.updateText
+import java.awt.Color
 import java.awt.Dimension
 import java.awt.GridBagLayout
 import javax.swing.*
@@ -78,7 +79,8 @@ class NewScreenPanel : JPanel() {
         textPane.apply {
             isEditable = false
             cursor = null
-            isOpaque = false
+            isOpaque = true
+            background = Color.white
             isFocusable = false
             contentType = "text/html"
         }
