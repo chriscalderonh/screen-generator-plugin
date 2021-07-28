@@ -6,6 +6,7 @@ import model.*
 import javax.inject.Inject
 
 private const val LAYOUT_DIRECTORY = "layout"
+private const val NAV_DIRECTORY = "navigation"
 
 interface FileCreator {
 
@@ -45,6 +46,11 @@ class FileCreatorImpl @Inject constructor(
                         if (resourcesSubdirectory != null) {
                             addFile(resourcesSubdirectory, file, it.subdirectory)
                         }
+                    } else if (it.fileType == FileType.NAVIGATION_XML) {
+                        val navSubdirectory = findNavigationSubdirectory(module)
+                        if (navSubdirectory != null) {
+                            addFile(navSubdirectory, file, it.subdirectory)
+                        }
                     } else {
                         val codeSubdirectory = findCodeSubdirectory(packageName, module, it.sourceSet)
                         if (codeSubdirectory != null) {
@@ -80,5 +86,10 @@ class FileCreatorImpl @Inject constructor(
     private fun findResourcesSubdirectory(module: Module) =
         sourceRootRepository.findResourcesSourceRoot(module)?.directory?.run {
             findSubdirectory(LAYOUT_DIRECTORY) ?: createSubdirectory(LAYOUT_DIRECTORY)
+        }
+
+    private fun findNavigationSubdirectory(module: Module) =
+        sourceRootRepository.findResourcesSourceRoot(module)?.directory?.run {
+            findSubdirectory(NAV_DIRECTORY) ?: createSubdirectory(NAV_DIRECTORY)
         }
 }

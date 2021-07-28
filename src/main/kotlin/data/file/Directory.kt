@@ -25,6 +25,7 @@ class DirectoryImpl(private val project: Project,
         val language = when(file.fileType) {
             FileType.KOTLIN -> KotlinLanguage.INSTANCE
             FileType.LAYOUT_XML -> XMLLanguage.INSTANCE
+            FileType.NAVIGATION_XML -> XMLLanguage.INSTANCE
         }
         val psiFile = PsiFileFactory.getInstance(project).createFileFromText("${file.name}.${file.fileType.extension}", language, file.content)
         if (psiDirectory.findFile("${file.name}.${file.fileType.extension}") == null) {

@@ -7,13 +7,18 @@ private const val LAYOUT_XML_DEFAULT_TEMPLATE = "<?xml version=\"1.0\" encoding=
         "    android:layout_height=\"match_parent\">\n" +
         "\n" +
         "</FrameLayout>"
+private const val NAVIGATION_XML_DEFAULT_TEMPLATE = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
+        "<navigation xmlns:android=\"http://schemas.android.com/apk/res/android\"\n" +
+        "    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n" +
+        "</navigation>"
 private val KOTLIN_DEFAULT_FILE_NAME = "${Variable.NAME.value}${Variable.SCREEN_ELEMENT.value}"
 private val LAYOUT_XML_DEFAULT_FILE_NAME = "${Variable.ANDROID_COMPONENT_NAME_LOWER_CASE.value}_${Variable.NAME_SNAKE_CASE.value}"
 
 
 enum class FileType(val displayName: String, val extension: String, val defaultTemplate: String, val defaultFileName: String) {
     KOTLIN("Kotlin", "kt", KOTLIN_DEFAULT_TEMPLATE, KOTLIN_DEFAULT_FILE_NAME),
-    LAYOUT_XML("Layout XML", "xml", LAYOUT_XML_DEFAULT_TEMPLATE, LAYOUT_XML_DEFAULT_FILE_NAME);
+    LAYOUT_XML("Layout XML", "xml", LAYOUT_XML_DEFAULT_TEMPLATE, LAYOUT_XML_DEFAULT_FILE_NAME),
+    NAVIGATION_XML("Navigation XML", "xml", NAVIGATION_XML_DEFAULT_TEMPLATE, LAYOUT_XML_DEFAULT_FILE_NAME);
 
     override fun toString() = displayName
 }

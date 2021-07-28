@@ -48,7 +48,7 @@ data class ScreenElement(
             .replaceVariables(screenName, packageName, androidComponent)
             .replaceCustomVariables(customVariablesMap)
             .run {
-                if (fileType == FileType.LAYOUT_XML)
+                if ((fileType == FileType.LAYOUT_XML) || (fileType == FileType.NAVIGATION_XML))
                     toLowerCase()
                 else
                     this

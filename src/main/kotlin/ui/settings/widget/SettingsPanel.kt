@@ -62,7 +62,8 @@ class SettingsPanel(project: Project) : JPanel() {
             add(topPanel, BorderLayout.PAGE_START)
             codePanels = mapOf(
                 FileType.KOTLIN to CodePanel(project, KotlinLanguage.INSTANCE, FileType.KOTLIN),
-                FileType.LAYOUT_XML to CodePanel(project, XMLLanguage.INSTANCE, FileType.LAYOUT_XML)
+                FileType.LAYOUT_XML to CodePanel(project, XMLLanguage.INSTANCE, FileType.LAYOUT_XML),
+                FileType.NAVIGATION_XML to CodePanel(project, XMLLanguage.INSTANCE, FileType.NAVIGATION_XML)
             )
             add(JPanel().apply {
                 layout = BoxLayout(this, BoxLayout.Y_AXIS)
